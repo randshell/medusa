@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import subprocess, platform, os, sys, readline, time, argparse
+import subprocess, platform, os, sys, time, argparse
 import cmd2, click, frida
 from libraries.dumper import dump_pkg
 from google_trans_new import google_translator  
@@ -1426,6 +1426,12 @@ Apk Directory: {}\n""".format(appname,filesDirectory,cacheDirectory,externalCach
                 print('> ' + snippet)
         except Exception as e:
             print(e)
+            
+if platform.system() == 'Windows':            
+    from pyreadline3 import Readline
+    readline = Readline()
+else:
+    import readline
 
 if __name__ == '__main__':
     if 'libedit' in readline.__doc__:
